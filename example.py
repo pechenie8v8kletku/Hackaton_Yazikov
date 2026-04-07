@@ -13,10 +13,10 @@ st.set_page_config(layout="wide")
 st.title("Логистика")
 
 col1, col2 = st.columns(2)
-
+#Выбор офис и маршрута отправки
 with col1:
     office = st.selectbox(
-        "Office",
+        "Офис",
         sorted(plan["office_from_id"].unique())
     )
 
@@ -24,13 +24,13 @@ with col2:
     routes = sorted(
         plan[plan["office_from_id"] == office]["route_id"].unique()
     )
-    route = st.selectbox(" Route", routes)
+    route = st.selectbox("Маршрут", routes)
 
 filtered = plan[
     (plan["office_from_id"] == office) &
     (plan["route_id"] == route)
 ].sort_values("timestamp")
-
+# Сравнение с средним
 st.subheader("Предсказаный объем, средний, их разница")
 
 col1, col2, col3 = st.columns(3)
@@ -43,16 +43,16 @@ with col2:
 
 with col3:
     diff = filtered["volume"].sum() - filtered["manual_volume"].sum()
-    st.metric("Δ модель против среднего", int(diff))
+    st.metric("Δ модели и среднего", int(diff))
 
-st.subheader("модель против среднего")
+st.subheader("График сравнения модели и среднего")
 
 if not filtered.empty:
     chart_df = filtered.set_index("timestamp")[["volume", "manual_volume"]]
     st.line_chart(chart_df)
 else:
     st.warning("Нет данных для выбранного фильтра")
-
+# График использования средних маленьких и больших машин на каждом маршруте
 st.subheader("Использование ТС")
 
 if not filtered.empty:

@@ -28,7 +28,7 @@ CAPACITY = {
     "medium": 10,
     "large": 20
 }
-
+# функция распределения ТС на каждое направление
 def allocate_smart(volume, fleet_row, low=0.08, high=0.12):
     target_min = volume * (1 + low)
     target_max = volume * (1 + high)

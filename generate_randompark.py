@@ -16,6 +16,7 @@ fleet = []
 for _, row in reas.iterrows():
     office = int(row["office_from_id"])
     avg_load = row["target_2h"]
+    #генерируем случайное количество автомобилей на каждом офисе
     total_capacity_needed = avg_load * 3
     small = int(total_capacity_needed * np.random.uniform(0.2, 0.4) / CAPACITY["small"])
     medium = int(total_capacity_needed * np.random.uniform(0.3, 0.5) / CAPACITY["medium"])

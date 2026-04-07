@@ -1,6 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
+# загружаем csv с предсказаниями модели по валидации( 5 последних процентов от трейна)
 df = pd.read_csv("val_predictions.csv")
 
 for col in ["y_pred_real", "y_true_real"]:
