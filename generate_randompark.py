@@ -28,7 +28,7 @@ for _, row in reas.iterrows():
         "medium_trucks": medium,
         "large_trucks": large
     })
-
+# сохраняем пример автопарка
 fleet_df = pd.DataFrame(fleet)
 fleet_df.to_csv("Example_autopark.csv", index=False)
 

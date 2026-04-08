@@ -22,7 +22,7 @@ pattern = train_df.groupby(
 pattern = pattern.rename(columns={"target_2h": "mean_volume"})
 
 
-
+# Емкость каждого ТС условность теста
 CAPACITY = {
     "small": 5,
     "medium": 10,
@@ -42,9 +42,9 @@ def allocate_smart(volume, fleet_row, low=0.08, high=0.12):
     share_small = fleet_row["small_trucks"] * 5 / total_cap
     share_medium = fleet_row["medium_trucks"] * 10 / total_cap
     share_large = fleet_row["large_trucks"] * 20 / total_cap
-    vol_small = volume * share_small
-    vol_medium = volume * share_medium
-    vol_large = volume * share_large
+    vol_small = target_min * share_small
+    vol_medium = target_min * share_medium
+    vol_large = target_min * share_large
 
     s = int(np.ceil(vol_small / 5))
     m = int(np.ceil(vol_medium / 10))

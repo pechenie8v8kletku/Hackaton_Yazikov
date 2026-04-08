@@ -9,7 +9,7 @@ for col in ["y_pred_real", "y_true_real"]:
 
 df["timestamp"] = pd.to_datetime(df["timestamp"])
 routes = [10,30,50,143,325]
-
+# графики предсказаний и настоящих значений
 plt.figure(figsize=(14, 6))
 
 for route_id in routes:
